@@ -1,4 +1,4 @@
-/** 
+/**
 A cool clock. Tests some concepts I've been unsure about.
 
 It might be nice to use a trochoid curve thing to make the image fade in and out?
@@ -12,7 +12,7 @@ static final float fadeMax = 1440; //1440 means 1 step per frame takes 1 minute 
 
 void setup() {
   size(600, 600);
-  colorMode(RGB, 255, 255, 255, fadeMax); 
+  colorMode(RGB, 255, 255, 255, fadeMax);
   background(255);
   imageMode(CENTER); // All images in the sketch are drawn CENTER-wise
   frameRate(24); // Affects the smoothness and speed of fade();
@@ -56,8 +56,8 @@ void drawHrs() {
 
   for (int i = 4; i >= 0; i--) {
     PGraphics bit = hourBit(binHrArr[i]);
-    hrs.image(bit, width/2 + (width/2.1) * cos(startAngle + angle * i), 
-      height/2 + (height/2.1) * sin(startAngle + angle * i), 
+    hrs.image(bit, width/2 + (width/2.1) * cos(startAngle + angle * i),
+      height/2 + (height/2.1) * sin(startAngle + angle * i),
       25, 25);
   } // end for
   hrs.endDraw();
@@ -69,7 +69,7 @@ void drawHrs() {
 PGraphics hourBit(char state) {
   PGraphics bit = createGraphics(40, 40);
   bit.beginDraw(); // Start drawing to this buffer...
-  bit.imageMode(CENTER);  
+  bit.imageMode(CENTER);
   //bit.clear();
   bit.stroke(0);
   // Fill colour based on state, 1 = filled.
@@ -86,8 +86,8 @@ PGraphics hourBit(char state) {
 
 /**
  Copypasted from https://processing.org/tutorials/anatomy/
- Originally i was drawing a pentagon but mainly i jsut needed to learn 
- how to get the coordinates of the points. 
+ Originally i was drawing a pentagon but mainly i jsut needed to learn
+ how to get the coordinates of the points.
  **/
 void polygon(int n, float cx, float cy, float w, float h, float startAngle) {
   float angle = TWO_PI/ n;
@@ -97,14 +97,14 @@ void polygon(int n, float cx, float cy, float w, float h, float startAngle) {
   h = h / 2.0;
   beginShape();
   for (int i = 0; i < n; i++) {
-    vertex(cx + w * cos(startAngle + angle * i), 
+    vertex(cx + w * cos(startAngle + angle * i),
       cy + h * sin(startAngle + angle * i));
   }
   endShape(CLOSE);
 }
 
-/** 
- Draws a semitransparent background, which fades everything on 
+/**
+ Draws a semitransparent background, which fades everything on
  screen by a given amount
  **/
 void fade(float amount) {
