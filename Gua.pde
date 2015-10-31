@@ -39,8 +39,9 @@ class Gua {
 
     PGraphics pg = createGraphics(width, height); // the image buffer we will return
     pg.beginDraw();
+    pg.clear();
     pg.fill(0);
-    pg.background(255);
+    //pg.background(255);
     int i = 5; // we have to read them backwards because tradition places the "smallest bit" at the top
 
       for (y = 0; y <= 250; y = y + 50) {
