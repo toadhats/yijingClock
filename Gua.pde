@@ -5,7 +5,7 @@ class Gua {
   int[] yao = new int[6];
   PImage img;
   int intValue = 0; // Used to cast the binary to base 10 to represent the hexagram that way
-  static final int height = 300;
+  static final int height = 300; // Need a good alternative to using these constants here... 
   static final int width = 300;
   static final int lineHeight = height / 12; // the height of a line; voids are equal height to lines
   static final int segmentSize = width / 5; // Used to determine the ratio of line to white in yin line; must be an odd number to allow middle to be empty
@@ -15,13 +15,16 @@ class Gua {
 
 
 
-  // Default constructor instantiates a random hexagram
+  /** 
+  Default constructor instantiates a random hexagram. This hexagram exists in the memory,
+  and must be drawn to the canvas in a seperate operation. 
+  **/
   Gua() {
     for (int i = 0; i < 6; i++) {
       yao[i] = round(random(0, 1));
-      print(yao[i]);
+      //print(yao[i]);
     }
-    println();
+    //println();
   } // end Gua()
 
   // Construct a hexagram with a given (base 10) value.
@@ -30,35 +33,14 @@ class Gua {
     //println("parsed binary: " + binary);
     for (int i = 0; i < binary.length(); i++) {
       yao[i] = Character.getNumericValue(binary.charAt(i));
-      print(yao[i]);
+      //print(yao[i]);
     }    
-    println();
+    //println();
   } // end Gua(int)
 
-  // Returns an image representation of the hexagram
+  // Convenience version comes in black
   PGraphics drawGua() {
-
-    PGraphics pg = createGraphics(width, height); // the image buffer we will return
-    pg.beginDraw();
-    //pg.clear();
-    pg.fill(0);
-    //pg.background(255);
-    int i = 5; // we have to read them backwards because tradition places the "smallest bit" at the top
-
-    for (y = 0; y <= 250; y = y + 50) {
-      if (yao[i] == 0) { // yin        
-        pg.rect(x, y, (segmentSize * 2), lineHeight); // left side
-        pg.rect(segmentSize * 3, y, (segmentSize * 2), lineHeight); // right side
-        println("-- --");
-      } // end if
-      else { // yang
-        pg.rect(x, y, width, lineHeight);
-        println("-----");
-      } // end else
-      i--;
-    } //end for
-    pg.endDraw();
-    return pg;
+    return drawGua(color(0,0,0));
   } // end drawGua()
 /** Draw a gua of a given colour **/
   PGraphics drawGua(color col) {
@@ -75,11 +57,11 @@ class Gua {
       if (yao[i] == 0) { // yin        
         pg.rect(x, y, (segmentSize * 2), lineHeight); // left side
         pg.rect(segmentSize * 3, y, (segmentSize * 2), lineHeight); // right side
-        println("-- --");
+        //println("-- --");
       } // end if
       else { // yang
         pg.rect(x, y, width, lineHeight);
-        println("-----");
+        //println("-----");
       } // end else
       i--;
     } //end for

@@ -1,9 +1,9 @@
 /**
 A cool clock. Tests some concepts I've been unsure about.
 
-It might be nice to use a trochoid curve thing to make the image fade in and out?
+It might be nice to use a trochoid curve thing to make the image fade in and out over the minute?
 A cool effect maybe, but also not necessarily very clock-like.
-Save for v2, where i might work the layering out properly so the fading is more intuitive
+Save for v2, where i could work the layering out properly so the fading is more intuitive
 **/
 PGraphics mins;
 PGraphics hrs;
@@ -11,7 +11,7 @@ float fadeAmount;
 static final float fadeMax = 1440; //1440 means 1 step per frame takes 1 minute at 24fps
 
 void setup() {
-  size(600, 600);
+  size(500, 500);
   colorMode(RGB, 255, 255, 255, fadeMax);
   background(255);
   imageMode(CENTER); // All images in the sketch are drawn CENTER-wise
@@ -29,7 +29,7 @@ void setup() {
 void draw() {
   //let's fade instead of redrawing the background to expose change over time
   fadeAmount = map(System.currentTimeMillis() % 60000, 0, 60000, 1, fadeMax); // new way explicitly ties the fade amount to the real current second
-  println(fadeAmount);
+  //println(fadeAmount);
   fade(fadeAmount);
 
   drawMins();
